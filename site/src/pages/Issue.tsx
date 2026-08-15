@@ -70,7 +70,7 @@ export default function Issue() {
     <div className="lg:grid lg:grid-cols-[40px_minmax(0,700px)] lg:justify-center lg:gap-8">
       <aside className="hidden lg:block">
         {issue && flatItems.length > 1 && (
-          <nav aria-label="Section scrubber" className="sticky top-1/2 -translate-y-1/2">
+          <nav aria-label="Section scrubber" className="sticky top-1/2 -translate-y-1/2 z-50">
             <ol className="space-y-1.5">
               {flatItems.map((it, i) => (
                 <li key={it.id}>
