@@ -91,7 +91,7 @@ export default function Issue() {
                           : 'w-2.5 bg-kumo-hairline group-hover:w-4 group-hover:bg-kumo-subtle'
                       }`}
                     />
-                    <span className="pointer-events-none absolute left-9 top-1/2 -translate-y-1/2 font-mono text-[10px] tracking-[0.14em] text-kumo-subtle opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity duration-150">
+                    <span className="pointer-events-none absolute left-9 top-1/2 -translate-y-1/2 z-50 font-mono text-[10px] tracking-[0.14em] text-kumo-strong bg-kumo-recessed border border-kumo-hairline rounded-sm px-2 py-1 whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-150 shadow-sm">
                       {it.title}
                     </span>
                   </a>
