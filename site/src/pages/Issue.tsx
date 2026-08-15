@@ -56,7 +56,46 @@ export default function Issue() {
   }, [groups])
 
   return (
-    <div className="lg:grid lg:grid-cols-[700px_220px] lg:justify-center lg:gap-10">
+    <div className="lg:grid lg:grid-cols-[40px_minmax(0,700px)] lg:justify-center lg:gap-8">
+      <aside className="hidden lg:block">
+        {issue && groups.length > 1 && (
+          <nav aria-label="Section scrubber" className="sticky top-1/2 -translate-y-1/2">
+            <div className="relative">
+              <span
+                aria-hidden="true"
+                className="absolute left-[1px] top-1 bottom-1 w-px bg-kumo-hairline"
+              />
+              <ol className="relative space-y-4">
+                {groups.map(([section], gi) => (
+                  <li key={gi}>
+                    <a
+                      href={`#sec-${gi}`}
+                      aria-label={section}
+                      onMouseEnter={() =>
+                        document
+                          .getElementById(`sec-${gi}`)
+                          ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                      }
+                      className="group relative flex items-center py-1"
+                    >
+                      <span
+                        className={`block h-[3px] rounded-full transition-all duration-200 ${
+                          activeSection === gi
+                            ? 'w-6 bg-kumo-brand'
+                            : 'w-2.5 bg-kumo-hairline group-hover:w-4 group-hover:bg-kumo-subtle'
+                        }`}
+                      />
+                      <span className="pointer-events-none absolute left-9 top-1/2 -translate-y-1/2 font-mono text-[10px] tracking-[0.14em] text-kumo-subtle opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity duration-150">
+                        {section}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          </nav>
+        )}
+      </aside>
       <article className="max-w-3xl mx-auto px-6 py-14 md:py-20 lg:mx-0 lg:max-w-none lg:px-0">
       <Link
         to={`/${lang}`}
@@ -179,49 +218,6 @@ export default function Issue() {
         </>
       )}
       </article>
-      {issue && groups.length > 1 && (
-        <aside className="hidden lg:block">
-          <nav aria-label="Section index" className="sticky top-14 pt-14">
-            <ol className="space-y-2">
-              {groups.map(([section, items], gi) => (
-                <li key={gi}>
-                  <a
-                    href={`#sec-${gi}`}
-                    className={`block font-mono text-[11px] tracking-[0.14em] transition-colors duration-200 ${
-                      activeSection === gi
-                        ? 'text-kumo-brand'
-                        : 'text-kumo-inactive hover:text-kumo-subtle'
-                    }`}
-                  >
-                    <span className="mr-1.5">{String(gi + 1).padStart(2, '0')}</span>
-                    {section}
-                  </a>
-                  <ul
-                    className={`mt-1 ml-[1.4em] space-y-1 border-l pl-2.5 transition-colors duration-200 ${
-                      activeSection === gi ? 'border-kumo-brand/40' : 'border-kumo-hairline'
-                    }`}
-                  >
-                    {items.map((it, ii) => (
-                      <li key={ii}>
-                        <a
-                          href={`#sec-${gi}-${ii}`}
-                          className={`block font-serif text-[13px] leading-snug transition-colors duration-200 ${
-                            activeSection === gi
-                              ? 'text-kumo-subtle hover:text-kumo-brand'
-                              : 'text-kumo-inactive hover:text-kumo-subtle'
-                          }`}
-                        >
-                          {t(it.title)}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ol>
-          </nav>
-        </aside>
-      )}
     </div>
   )
 }
