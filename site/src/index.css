@@ -108,6 +108,11 @@ body {
   color: var(--text-color-kumo-default);
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 1.5rem;
+}
+
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -133,5 +138,8 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .rise-in {
     animation: none;
+  }
+  html {
+    scroll-behavior: auto;
   }
 }
