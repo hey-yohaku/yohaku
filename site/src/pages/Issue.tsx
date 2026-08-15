@@ -30,69 +30,74 @@ export default function Issue() {
     return Array.from(map.entries())
   }, [issue, en])
 
-  // 侧边索引高亮（scroll spy）
-  const [activeSection, setActiveSection] = useState(0)
+  // 扁平条目列表（每个内容一个刻度）
+  const flatItems = useMemo(() => {
+    const arr: { id: string; title: string; section: string }[] = []
+    groups.forEach(([section, items], gi) => {
+      items.forEach((it, ii) => {
+        arr.push({ id: `sec-${gi}-${ii}`, title: t(it.title), section })
+      })
+    })
+    return arr
+  }, [groups])
+
+  // 侧边索引高亮（scroll spy，按条目）
+  const [activeItem, setActiveItem] = useState(0)
   useEffect(() => {
-    if (groups.length === 0) return
+    if (flatItems.length === 0) return
     const onScroll = () => {
       const nearBottom =
         window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80
       if (nearBottom) {
-        setActiveSection(groups.length - 1)
+        setActiveItem(flatItems.length - 1)
         return
       }
       let current = 0
       const pos = window.scrollY + 120
-      for (let gi = 0; gi < groups.length; gi++) {
-        const el = document.getElementById(`sec-${gi}`)
+      for (let i = 0; i < flatItems.length; i++) {
+        const el = document.getElementById(flatItems[i].id)
         if (!el) continue
-        if (el.getBoundingClientRect().top + window.scrollY <= pos) current = gi
+        if (el.getBoundingClientRect().top + window.scrollY <= pos) current = i
       }
-      setActiveSection(current)
+      setActiveItem(current)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     onScroll()
     return () => window.removeEventListener('scroll', onScroll)
-  }, [groups])
+  }, [flatItems])
 
   return (
     <div className="lg:grid lg:grid-cols-[40px_minmax(0,700px)] lg:justify-center lg:gap-8">
       <aside className="hidden lg:block">
-        {issue && groups.length > 1 && (
+        {issue && flatItems.length > 1 && (
           <nav aria-label="Section scrubber" className="sticky top-1/2 -translate-y-1/2">
-            <div className="relative">
-              <span
-                aria-hidden="true"
-                className="absolute left-[1px] top-1 bottom-1 w-px bg-kumo-hairline"
-              />
-              <ol className="relative space-y-4">
-                {groups.map(([section], gi) => (
-                  <li key={gi}>
-                    <a
-                      href={`#sec-${gi}`}
-                      aria-label={section}
-                      onMouseEnter={() =>
-                        document
-                          .getElementById(`sec-${gi}`)
-                          ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-                      }
-                      className="group relative flex items-center py-1"
-                    >
-                      <span
-                        className={`block h-[3px] rounded-full transition-all duration-200 ${
-                          activeSection === gi
-                            ? 'w-6 bg-kumo-brand'
-                            : 'w-2.5 bg-kumo-hairline group-hover:w-4 group-hover:bg-kumo-subtle'
-                        }`}
-                      />
-                      <span className="pointer-events-none absolute left-9 top-1/2 -translate-y-1/2 font-mono text-[10px] tracking-[0.14em] text-kumo-subtle opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity duration-150">
-                        {section}
-                      </span>
-                    </a>
-                  </li>
-                ))}
-              </ol>
-            </div>
+            <ol className="space-y-1.5">
+              {flatItems.map((it, i) => (
+                <li key={it.id}>
+                  <a
+                    href={`#${it.id}`}
+                    aria-label={it.title}
+                    onMouseEnter={() =>
+                      document
+                        .getElementById(it.id)
+                        ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }
+                    className="group relative flex items-center py-0.5"
+                  >
+                    <span
+                      className={`block h-[3px] rounded-full transition-all duration-200 ${
+                        activeItem === i
+                          ? 'w-6 bg-kumo-brand'
+                          : 'w-2.5 bg-kumo-hairline group-hover:w-4 group-hover:bg-kumo-subtle'
+                      }`}
+                    />
+                    <span className="pointer-events-none absolute left-9 top-1/2 -translate-y-1/2 font-mono text-[10px] tracking-[0.14em] text-kumo-subtle opacity-0 group-hover:opacity-100 whitespace-nowrap transition-opacity duration-150">
+                      {it.title}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ol>
           </nav>
         )}
       </aside>
