@@ -30,8 +30,34 @@ export default function Issue() {
     return Array.from(map.entries())
   }, [issue, en])
 
+  // 侧边索引高亮（scroll spy）
+  const [activeSection, setActiveSection] = useState(0)
+  useEffect(() => {
+    if (groups.length === 0) return
+    const onScroll = () => {
+      const nearBottom =
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 80
+      if (nearBottom) {
+        setActiveSection(groups.length - 1)
+        return
+      }
+      let current = 0
+      const pos = window.scrollY + 120
+      for (let gi = 0; gi < groups.length; gi++) {
+        const el = document.getElementById(`sec-${gi}`)
+        if (!el) continue
+        if (el.getBoundingClientRect().top + window.scrollY <= pos) current = gi
+      }
+      setActiveSection(current)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [groups])
+
   return (
-    <article className="max-w-3xl mx-auto px-6 py-14 md:py-20">
+    <div className="lg:grid lg:grid-cols-[700px_220px] lg:justify-center lg:gap-10">
+      <article className="max-w-3xl mx-auto px-6 py-14 md:py-20 lg:mx-0 lg:max-w-none lg:px-0">
       <Link
         to={`/${lang}`}
         className="inline-flex items-center gap-1.5 font-mono text-[11px] tracking-[0.18em] text-kumo-inactive hover:text-kumo-subtle transition-colors duration-200"
@@ -66,41 +92,6 @@ export default function Issue() {
             </h1>
             {en && issue.summary && (
               <p className="text-kumo-subtle leading-relaxed mt-5 max-w-xl">{issue.summary}</p>
-            )}
-            {groups.length > 1 && (
-              <nav
-                aria-label="Table of contents"
-                className="mt-8 py-5 border-y border-kumo-hairline"
-              >
-                <p className="font-mono text-[10px] tracking-[0.24em] text-kumo-inactive mb-3">
-                  {en ? 'IN THIS ISSUE' : '本期栏目'}
-                </p>
-                <ol className="space-y-1.5">
-                  {groups.map(([section, items], gi) => (
-                    <li key={gi}>
-                      <a
-                        href={`#sec-${gi}`}
-                        className="inline-flex items-baseline gap-2 font-mono text-[11px] tracking-[0.14em] text-kumo-subtle hover:text-kumo-brand transition-colors duration-200"
-                      >
-                        <span className="text-kumo-brand">{String(gi + 1).padStart(2, '0')}</span>
-                        <span>{section}</span>
-                      </a>
-                      <ul className="mt-1 ml-5 space-y-1 border-l border-kumo-hairline pl-3">
-                        {items.map((it, ii) => (
-                          <li key={ii}>
-                            <a
-                              href={`#sec-${gi}-${ii}`}
-                              className="font-serif text-[15px] leading-snug text-kumo-subtle hover:text-kumo-brand transition-colors duration-200"
-                            >
-                              {t(it.title)}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </li>
-                  ))}
-                </ol>
-              </nav>
             )}
             {issue.cover && (
               <figure className="mt-7 overflow-hidden rounded-sm border border-kumo-hairline bg-kumo-recessed">
@@ -187,6 +178,50 @@ export default function Issue() {
           </footer>
         </>
       )}
-    </article>
+      </article>
+      {issue && groups.length > 1 && (
+        <aside className="hidden lg:block">
+          <nav aria-label="Section index" className="sticky top-14 pt-14">
+            <ol className="space-y-2">
+              {groups.map(([section, items], gi) => (
+                <li key={gi}>
+                  <a
+                    href={`#sec-${gi}`}
+                    className={`block font-mono text-[11px] tracking-[0.14em] transition-colors duration-200 ${
+                      activeSection === gi
+                        ? 'text-kumo-brand'
+                        : 'text-kumo-inactive hover:text-kumo-subtle'
+                    }`}
+                  >
+                    <span className="mr-1.5">{String(gi + 1).padStart(2, '0')}</span>
+                    {section}
+                  </a>
+                  <ul
+                    className={`mt-1 ml-[1.4em] space-y-1 border-l pl-2.5 transition-colors duration-200 ${
+                      activeSection === gi ? 'border-kumo-brand/40' : 'border-kumo-hairline'
+                    }`}
+                  >
+                    {items.map((it, ii) => (
+                      <li key={ii}>
+                        <a
+                          href={`#sec-${gi}-${ii}`}
+                          className={`block font-serif text-[13px] leading-snug transition-colors duration-200 ${
+                            activeSection === gi
+                              ? 'text-kumo-subtle hover:text-kumo-brand'
+                              : 'text-kumo-inactive hover:text-kumo-subtle'
+                          }`}
+                        >
+                          {t(it.title)}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </ol>
+          </nav>
+        </aside>
+      )}
+    </div>
   )
 }
