@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 2,
+  "issue": 1,
+  "date": "2026-08-13",
+  "title": {
+    "en": "Taste is the new feature",
+    "zh": "品位是新的功能"
+  },
+  "summary": "Three hand-picked galleries — components, dark mode, motion — and why curation is becoming a product of its own.",
+  "cover": "",
+  "tags": [
+    "curation",
+    "ui",
+    "inspiration"
+  ],
+  "items": [
+    {
+      "title": {
+        "en": "Uiverse",
+        "zh": "Uiverse"
+      },
+      "url": "https://uiverse.io/",
+      "note": {
+        "en": "open-source UI elements, community-made, copy the HTML/CSS and go. Design systems keep getting heavier; this one ships a single element instead.",
+        "zh": "开源 UI 元素库，社区贡献，复制 HTML/CSS 就走。妙在粒度：不是整套设计系统，是能单拎一个按钮、不带着全家桶偷走。"
+      },
+      "tags": {
+        "en": [
+          "components",
+          "css",
+          "opensource"
+        ],
+        "zh": [
+          "组件",
+          "CSS",
+          "开源"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      }
+    },
+    {
+      "title": {
+        "en": "Dark Design",
+        "zh": "Dark Design"
+      },
+      "url": "https://www.dark.design/",
+      "note": {
+        "en": "hand-picked dark websites, one vertical, no noise. Dark mode has moved from a feature toggle to an aesthetic worth its own site.",
+        "zh": "人工精选的暗色网站，只做这一个垂直，没有噪音。暗色模式早就离开\"功能\"的范畴，给自己盖了个博物馆。"
+      },
+      "tags": {
+        "en": [
+          "inspiration",
+          "darkmode"
+        ],
+        "zh": [
+          "灵感",
+          "暗色"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      }
+    },
+    {
+      "title": {
+        "en": "60fps",
+        "zh": "60fps"
+      },
+      "url": "https://60fps.design/",
+      "note": {
+        "en": "interaction details from well-built iOS and web apps, filtered by frame rate. The name is the filter: nothing below 60fps.",
+        "zh": "从最好的 iOS 和网页应用里收来的交互细节。名字本身就是立场：低于 60 不是动效，是卡顿。"
+      },
+      "tags": {
+        "en": [
+          "motion",
+          "inspiration"
+        ],
+        "zh": [
+          "动效",
+          "灵感"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      }
+    }
+  ]
+}

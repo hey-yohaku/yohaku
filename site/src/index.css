@@ -1,0 +1,137 @@
+@import "tailwindcss";
+@import "@cloudflare/kumo/styles/tailwind";
+@import "@cloudflare/kumo/styles/theme-kumo";
+
+@source "../node_modules/@cloudflare/kumo/dist/**/*.{js,jsx,ts,tsx}";
+
+/* ============================================================
+   yohaku 主题 —— Flexoki（ink & paper）覆盖 Kumo 语义 token
+   亮 = 暖纸 #FFFCF0 ／ 暗 = 墨 #100F0F ／ 朱红印章 = red 色阶
+   颜色用 unlayered :root 覆盖（优先级高于 Kumo 的 @layer base）
+   ============================================================ */
+
+/* —— 字体：衬线标题 + 无衬线正文（英文 Newsreader，中文宋体）—— */
+@theme {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-serif: "Newsreader", "Fraunces", Georgia, "Songti SC", "SimSun", serif;
+  --font-mono: ui-monospace, "SF Mono", "IBM Plex Mono", "JetBrains Mono", Menlo,
+    Consolas, monospace;
+}
+
+/* —— 亮色（暖纸）—— */
+:root {
+  /* 表面层级 */
+  --color-kumo-canvas: #fffcf0;
+  --color-kumo-base: #ffffff;
+  --color-kumo-elevated: #ffffff;
+  --color-kumo-recessed: #f2f0e5;
+  --color-kumo-tint: #f2f0e5;
+  --color-kumo-contrast: #100f0f;
+  --color-kumo-overlay: rgba(16, 15, 15, 0.4);
+  --color-kumo-control: #ffffff;
+  --color-kumo-interact: #dad8ce;
+
+  /* 边框线 */
+  --color-kumo-hairline: #e6e4d9;
+  --color-kumo-line: #e6e4d9;
+
+  /* 品牌朱红（印章）*/
+  --color-kumo-brand: #af3029;
+  --color-kumo-brand-hover: #942822;
+  --color-kumo-focus: #af3029;
+
+  /* 文字层级（墨）*/
+  --text-color-kumo-default: #100f0f;
+  --text-color-kumo-strong: #100f0f;
+  --text-color-kumo-subtle: #6f6e69;
+  --text-color-kumo-inactive: #9f9d96;
+  --text-color-kumo-placeholder: #9f9d96;
+  --text-color-kumo-inverse: #fffcf0;
+  --text-color-kumo-brand: #af3029;
+  --text-color-kumo-link: #af3029;
+
+  /* 状态色 */
+  --color-kumo-info: #205ea6;
+  --color-kumo-success: #66800b;
+  --color-kumo-danger: #af3029;
+  --color-kumo-warning: #ad8301;
+  --text-color-kumo-info: #205ea6;
+  --text-color-kumo-success: #66800b;
+  --text-color-kumo-danger: #af3029;
+  --text-color-kumo-warning: #ad8301;
+}
+
+/* —— 暗色（夜墨）—— */
+:root[data-mode="dark"] {
+  --color-kumo-canvas: #100f0f;
+  --color-kumo-base: #1c1b1a;
+  --color-kumo-elevated: #282726;
+  --color-kumo-recessed: #1c1b1a;
+  --color-kumo-tint: #282726;
+  --color-kumo-contrast: #edeae4;
+  --color-kumo-overlay: rgba(16, 15, 15, 0.6);
+  --color-kumo-control: #1c1b1a;
+  --color-kumo-interact: #343331;
+
+  --color-kumo-hairline: #282726;
+  --color-kumo-line: #343331;
+
+  --color-kumo-brand: #d14d41;
+  --color-kumo-brand-hover: #e8705f;
+  --color-kumo-focus: #d14d41;
+
+  --text-color-kumo-default: #cecdc3;
+  --text-color-kumo-strong: #f2f0e5;
+  --text-color-kumo-subtle: #878580;
+  --text-color-kumo-inactive: #575653;
+  --text-color-kumo-placeholder: #6f6e69;
+  --text-color-kumo-inverse: #100f0f;
+  --text-color-kumo-brand: #d14d41;
+  --text-color-kumo-link: #d14d41;
+
+  --color-kumo-info: #4385be;
+  --color-kumo-success: #879a39;
+  --color-kumo-danger: #d14d41;
+  --color-kumo-warning: #d0a215;
+  --text-color-kumo-info: #4385be;
+  --text-color-kumo-success: #879a39;
+  --text-color-kumo-danger: #d14d41;
+  --text-color-kumo-warning: #d0a215;
+}
+
+/* —— 基础排版 —— */
+html,
+body {
+  margin: 0;
+  background: var(--color-kumo-canvas);
+  color: var(--text-color-kumo-default);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* —— 入场动效（编辑排版：安静、克制）—— */
+@utility rise-in {
+  animation: rise 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise-in {
+    animation: none;
+  }
+}

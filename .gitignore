@@ -1,0 +1,16 @@
+# macOS
+.DS_Store
+
+# site 依赖与构建产物
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# 编辑器
+.vscode/
+.idea/

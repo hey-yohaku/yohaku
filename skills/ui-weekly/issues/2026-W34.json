@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "issue": 2,
+  "date": "2026-08-20",
+  "title": {
+    "en": "Motion is information",
+    "zh": "动效是信息"
+  },
+  "summary": "Four tools that treat motion as data, not decoration — and what that distinction buys you.",
+  "cover": "assets/2026-W34/motion.webp",
+  "cover_credit": "Motion",
+  "tags": [
+    "motion",
+    "animation",
+    "tools"
+  ],
+  "items": [
+    {
+      "title": {
+        "en": "Motion",
+        "zh": "Motion"
+      },
+      "url": "https://motion.dev/",
+      "note": {
+        "en": "Framer Motion stripped to its spring core and shipped framework-free. The sequencing API is the part people wanted; the React wrapper was the tax.",
+        "zh": "Framer Motion 剥到只剩弹簧内核，脱离框架单独发货。人们真正要的是它的序列 API；React 包装反而是税。"
+      },
+      "tags": {
+        "en": [
+          "motion",
+          "react",
+          "animation"
+        ],
+        "zh": [
+          "动效",
+          "React",
+          "动画"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": ""
+    },
+    {
+      "title": {
+        "en": "GSAP",
+        "zh": "GSAP"
+      },
+      "url": "https://gsap.com/",
+      "note": {
+        "en": "the timeline library that keeps outliving its obituaries. Every year brings a new animation framework, and every year they borrow its sequencing model.",
+        "zh": "一个总在讣告里活下来的时间轴库。每年都有新动画框架，每年都在借它的序列模型。"
+      },
+      "tags": {
+        "en": [
+          "motion",
+          "animation",
+          "javascript"
+        ],
+        "zh": [
+          "动效",
+          "动画",
+          "JavaScript"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": "assets/2026-W34/gsap.webp"
+    },
+    {
+      "title": {
+        "en": "Lenis",
+        "zh": "Lenis"
+      },
+      "url": "https://lenis.darkroom.engineering/",
+      "note": {
+        "en": "smooth scrolling as a small, polite dependency. It doesn't hijack the scrollbar or fight the browser; it just rounds the edges.",
+        "zh": "把平滑滚动做成一个小而守规矩的依赖。不劫持滚动条，不和浏览器对着干，只把棱角磨圆。"
+      },
+      "tags": {
+        "en": [
+          "motion",
+          "scroll",
+          "javascript"
+        ],
+        "zh": [
+          "动效",
+          "滚动",
+          "JavaScript"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": "assets/2026-W34/lenis.webp"
+    },
+    {
+      "title": {
+        "en": "Framer",
+        "zh": "Framer"
+      },
+      "url": "https://www.framer.com/",
+      "note": {
+        "en": "a design tool that grew a site builder on top of itself. The people who stay are the ones who treat its animation panel as the whole point.",
+        "zh": "一个在自己身上长出建站器的设计工具。留下来的人，都把它的动效面板当成唯一理由。"
+      },
+      "tags": {
+        "en": [
+          "tools",
+          "prototyping",
+          "design"
+        ],
+        "zh": [
+          "工具",
+          "原型",
+          "设计"
+        ]
+      },
+      "section": {
+        "en": "tools",
+        "zh": "工具软件"
+      },
+      "image": ""
+    }
+  ]
+}

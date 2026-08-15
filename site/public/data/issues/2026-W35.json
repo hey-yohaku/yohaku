@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "issue": 3,
+  "date": "2026-08-27",
+  "title": {
+    "en": "Headless is the new default",
+    "zh": "无头成了新默认"
+  },
+  "summary": "The component layer is being rebuilt from the ground up — primitives first, opinions later.",
+  "cover": "assets/2026-W35/shadcn.webp",
+  "cover_credit": "shadcn/ui",
+  "tags": [
+    "components",
+    "design-systems",
+    "opensource"
+  ],
+  "items": [
+    {
+      "title": {
+        "en": "shadcn/ui",
+        "zh": "shadcn/ui"
+      },
+      "url": "https://ui.shadcn.com/",
+      "note": {
+        "en": "components you copy into your repo instead of installing. The genius move was giving up on versioning; your code, your diffs.",
+        "zh": "复制进仓库、而不是安装进依赖的组件。最聪明的一步是放弃了版本管理：你的代码，你的 diff。"
+      },
+      "tags": {
+        "en": [
+          "components",
+          "react",
+          "tailwind"
+        ],
+        "zh": [
+          "组件",
+          "React",
+          "Tailwind"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": ""
+    },
+    {
+      "title": {
+        "en": "Radix UI",
+        "zh": "Radix UI"
+      },
+      "url": "https://www.radix-ui.com/",
+      "note": {
+        "en": "headless primitives that handle the hard 20%: focus, keyboard, ARIA. The accessibility is the product.",
+        "zh": "专啃最难 20% 的无头原语：焦点、键盘、ARIA。无障碍就是它的产品。"
+      },
+      "tags": {
+        "en": [
+          "components",
+          "react",
+          "a11y"
+        ],
+        "zh": [
+          "组件",
+          "React",
+          "无障碍"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": ""
+    },
+    {
+      "title": {
+        "en": "Headless UI",
+        "zh": "Headless UI"
+      },
+      "url": "https://headlessui.com/",
+      "note": {
+        "en": "Tailwind's own take on unstyled primitives. Smaller than the competition, which is the point.",
+        "zh": "Tailwind 自己的无样式原语。比对手小，而这正是重点。"
+      },
+      "tags": {
+        "en": [
+          "components",
+          "tailwind",
+          "react"
+        ],
+        "zh": [
+          "组件",
+          "Tailwind",
+          "React"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": ""
+    },
+    {
+      "title": {
+        "en": "Refactoring UI",
+        "zh": "Refactoring UI"
+      },
+      "url": "https://www.refactoringui.com/",
+      "note": {
+        "en": "the design book that treats spacing and hierarchy as a craft, not a mystery. Still the fastest shortcut from \"looks broken\" to \"looks intentional\".",
+        "zh": "把间距和层级当手艺、而不是玄学的设计书。从「看着就坏」到「看着就是故意的」，它仍然是最快的捷径。"
+      },
+      "tags": {
+        "en": [
+          "design",
+          "books",
+          "typography"
+        ],
+        "zh": [
+          "设计",
+          "书",
+          "排版"
+        ]
+      },
+      "section": {
+        "en": "worth reading",
+        "zh": "值得一读"
+      },
+      "image": "assets/2026-W35/refactoringui.webp"
+    }
+  ]
+}

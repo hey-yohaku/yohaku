@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 2,
+  "issue": 4,
+  "date": "2026-09-03",
+  "title": {
+    "en": "Type is the interface",
+    "zh": "字体就是界面"
+  },
+  "summary": "Before color, before motion — the type decisions are the interface.",
+  "cover": "assets/2026-W36/googlefonts.webp",
+  "cover_credit": "Google Fonts",
+  "tags": [
+    "typography",
+    "fonts",
+    "design"
+  ],
+  "items": [
+    {
+      "title": {
+        "en": "Google Fonts",
+        "zh": "Google Fonts"
+      },
+      "url": "https://fonts.google.com/",
+      "note": {
+        "en": "the default starting point, and the reason half the web looks the same. The variable font support is quietly the best feature.",
+        "zh": "默认起点，也是半个互联网长得一样的原因。可变字体支持安静地成了它最好的功能。"
+      },
+      "tags": {
+        "en": [
+          "fonts",
+          "typography",
+          "web"
+        ],
+        "zh": [
+          "字体",
+          "排版",
+          "网页"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": ""
+    },
+    {
+      "title": {
+        "en": "Fontsource",
+        "zh": "Fontsource"
+      },
+      "url": "https://fontsource.org/",
+      "note": {
+        "en": "self-host any Google Font in a few lines. The answer when you care about performance or live somewhere Google's CDN doesn't.",
+        "zh": "几行代码自托管任何 Google Font。当你在意性能、或者住在 Google CDN 到不了的地方，答案就是它。"
+      },
+      "tags": {
+        "en": [
+          "fonts",
+          "selfhosting",
+          "web"
+        ],
+        "zh": [
+          "字体",
+          "自托管",
+          "网页"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": "assets/2026-W36/fontsource.webp"
+    },
+    {
+      "title": {
+        "en": "Practical Typography",
+        "zh": "Practical Typography"
+      },
+      "url": "https://practicaltypography.com/",
+      "note": {
+        "en": "the shortest real book on type, free, and it reads like a person arguing with you.",
+        "zh": "最短的真排版书，免费，读起来像有个人在跟你抬杠。"
+      },
+      "tags": {
+        "en": [
+          "typography",
+          "books",
+          "writing"
+        ],
+        "zh": [
+          "排版",
+          "书",
+          "写作"
+        ]
+      },
+      "section": {
+        "en": "resources",
+        "zh": "资源"
+      },
+      "image": ""
+    },
+    {
+      "title": {
+        "en": "Monospace",
+        "zh": "Monospace"
+      },
+      "url": "https://monospace.land/",
+      "note": {
+        "en": "a site that collects monospace typefaces and nothing else. One constraint, done thoroughly.",
+        "zh": "一个只收集等宽字体、别的什么都不做的网站。一个约束，做到底。"
+      },
+      "tags": {
+        "en": [
+          "typography",
+          "inspiration",
+          "monospace"
+        ],
+        "zh": [
+          "排版",
+          "灵感",
+          "等宽"
+        ]
+      },
+      "section": {
+        "en": "work",
+        "zh": "作品案例"
+      },
+      "image": "assets/2026-W36/monospace.webp"
+    }
+  ]
+}
