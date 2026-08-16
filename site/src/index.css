@@ -143,3 +143,24 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* 导航 label 展开/收起：纯 CSS hover，避免 React 频繁渲染 */
+.nav-label {
+  max-width: 0;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 0.2s ease, opacity 0.2s ease;
+}
+.nav-item-active .nav-label {
+  max-width: 72px;
+  opacity: 1;
+}
+header nav:hover .nav-label {
+  max-width: 0;
+  opacity: 0;
+}
+header nav:hover .nav-item:hover .nav-label {
+  max-width: 72px;
+  opacity: 1;
+}

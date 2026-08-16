@@ -10,26 +10,13 @@ const T = {
 }
 
 const linkBase =
-  'group flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] tracking-[0.16em] sm:tracking-[0.18em] transition-colors duration-200'
-
-function NavLabel({ show, children }: { show: boolean; children: React.ReactNode }) {
-  return (
-    <span
-      className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
-        show ? 'max-w-[72px] opacity-100' : 'max-w-0 opacity-0'
-      }`}
-    >
-      {children}
-    </span>
-  )
-}
+  'flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] tracking-[0.16em] sm:tracking-[0.18em] transition-colors duration-200'
 
 export default function Layout() {
   const { lang = 'en' } = useParams()
   const location = useLocation()
   const { dark, toggle } = useTheme()
   const [searchOpen, setSearchOpen] = useState(false)
-  const [hovered, setHovered] = useState<string | null>(null)
 
   const isEn = lang === 'en'
   const otherLang = isEn ? 'zh' : 'en'
@@ -38,16 +25,6 @@ export default function Layout() {
 
   const onHome = location.pathname === `/${lang}` || location.pathname === `/${lang}/`
   const onAbout = location.pathname.startsWith(`/${lang}/about`)
-
-  // 同一时刻只有一个 tab 显示文字：hover 谁显示谁；无 hover 时显示 active 的
-  const showIssues = hovered === 'issues' || (hovered === null && onHome)
-  const showSearch = hovered === 'search'
-  const showAbout = hovered === 'about' || (hovered === null && onAbout)
-
-  const hoverProps = (key: string) => ({
-    onMouseEnter: () => setHovered(key),
-    onMouseLeave: () => setHovered(null),
-  })
 
   return (
     <div className="min-h-screen bg-kumo-canvas text-kumo-default flex flex-col">
@@ -64,30 +41,33 @@ export default function Layout() {
             <Link
               to={`/${lang}`}
               title={t.issues}
-              {...hoverProps('issues')}
-              className={`${linkBase} ${onHome ? 'text-kumo-strong' : 'text-kumo-subtle hover:text-kumo-default'}`}
+              className={`nav-item ${onHome ? 'nav-item-active' : ''} ${linkBase} ${
+                onHome ? 'text-kumo-strong' : 'text-kumo-subtle hover:text-kumo-default'
+              }`}
             >
               <BookOpen size={15} strokeWidth={1.5} />
-              <NavLabel show={showIssues}>{t.issues}</NavLabel>
+              <span className="nav-label">{t.issues}</span>
             </Link>
             <button
               onClick={() => setSearchOpen(true)}
               title={t.search}
               aria-label={t.search}
-              {...hoverProps('search')}
-              className={`${linkBase} ${searchOpen ? 'text-kumo-brand' : 'text-kumo-subtle hover:text-kumo-default'}`}
+              className={`nav-item ${linkBase} ${
+                searchOpen ? 'text-kumo-brand' : 'text-kumo-subtle hover:text-kumo-default'
+              }`}
             >
               <Search size={15} strokeWidth={1.5} />
-              <NavLabel show={showSearch}>{t.search}</NavLabel>
+              <span className="nav-label">{t.search}</span>
             </button>
             <Link
               to={`/${lang}/about`}
               title={t.about}
-              {...hoverProps('about')}
-              className={`${linkBase} ${onAbout ? 'text-kumo-strong' : 'text-kumo-subtle hover:text-kumo-default'}`}
+              className={`nav-item ${onAbout ? 'nav-item-active' : ''} ${linkBase} ${
+                onAbout ? 'text-kumo-strong' : 'text-kumo-subtle hover:text-kumo-default'
+              }`}
             >
               <Info size={15} strokeWidth={1.5} />
-              <NavLabel show={showAbout}>{t.about}</NavLabel>
+              <span className="nav-label">{t.about}</span>
             </Link>
             <span className="w-px h-3 bg-kumo-hairline" />
             <Link
