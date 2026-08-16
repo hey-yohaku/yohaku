@@ -46,7 +46,7 @@ export default function Layout() {
               }`}
             >
               <BookOpen size={15} strokeWidth={1.5} />
-              <span className="nav-label">{t.issues}</span>
+              <span className="nav-label"><span>{t.issues}</span></span>
             </Link>
             <button
               onClick={() => setSearchOpen(true)}
@@ -57,7 +57,7 @@ export default function Layout() {
               }`}
             >
               <Search size={15} strokeWidth={1.5} />
-              <span className="nav-label">{t.search}</span>
+              <span className="nav-label"><span>{t.search}</span></span>
             </button>
             <Link
               to={`/${lang}/about`}
@@ -67,7 +67,7 @@ export default function Layout() {
               }`}
             >
               <Info size={15} strokeWidth={1.5} />
-              <span className="nav-label">{t.about}</span>
+              <span className="nav-label"><span>{t.about}</span></span>
             </Link>
             <span className="w-px h-3 bg-kumo-hairline" />
             <Link
