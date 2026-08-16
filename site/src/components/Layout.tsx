@@ -1,21 +1,44 @@
+import { useState } from 'react'
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom'
-import { Moon, Sun } from 'lucide-react'
+import { BookOpen, Info, Moon, Search, Sun } from 'lucide-react'
 import { useTheme } from '../lib/theme'
+import SearchModal from './SearchModal'
 
 const T = {
   en: { issues: 'ISSUES', search: 'SEARCH', about: 'ABOUT' },
   zh: { issues: '期刊', search: '搜索', about: '关于' },
 }
 
+const linkBase =
+  'group flex items-center gap-1.5 font-mono text-[10px] sm:text-[11px] tracking-[0.16em] sm:tracking-[0.18em] transition-colors duration-200'
+
+function NavLabel({ active, children }: { active: boolean; children: React.ReactNode }) {
+  return (
+    <span
+      className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
+        active
+          ? 'max-w-[72px] opacity-100'
+          : 'max-w-0 opacity-0 group-hover:max-w-[72px] group-hover:opacity-100'
+      }`}
+    >
+      {children}
+    </span>
+  )
+}
+
 export default function Layout() {
   const { lang = 'en' } = useParams()
   const location = useLocation()
   const { dark, toggle } = useTheme()
+  const [searchOpen, setSearchOpen] = useState(false)
 
   const isEn = lang === 'en'
   const otherLang = isEn ? 'zh' : 'en'
   const t = T[isEn ? 'en' : 'zh']
   const switchPath = location.pathname.replace(/^\/(en|zh)/, `/${otherLang}`)
+
+  const onHome = location.pathname === `/${lang}` || location.pathname === `/${lang}/`
+  const onAbout = location.pathname.startsWith(`/${lang}/about`)
 
   return (
     <div className="min-h-screen bg-kumo-canvas text-kumo-default flex flex-col">
@@ -28,29 +51,36 @@ export default function Layout() {
             yohaku
           </Link>
 
-          <nav className="flex items-center gap-4 sm:gap-6 font-mono text-[10px] sm:text-[11px] tracking-[0.16em] sm:tracking-[0.18em]">
+          <nav className="flex items-center gap-4 sm:gap-5">
             <Link
               to={`/${lang}`}
-              className="text-kumo-subtle hover:text-kumo-default transition-colors duration-200"
+              title={t.issues}
+              className={`${linkBase} ${onHome ? 'text-kumo-strong' : 'text-kumo-subtle hover:text-kumo-default'}`}
             >
-              {t.issues}
+              <BookOpen size={15} strokeWidth={1.5} />
+              <NavLabel active={onHome}>{t.issues}</NavLabel>
             </Link>
-            <Link
-              to={`/${lang}/search`}
-              className="text-kumo-subtle hover:text-kumo-default transition-colors duration-200"
+            <button
+              onClick={() => setSearchOpen(true)}
+              title={t.search}
+              aria-label={t.search}
+              className={`${linkBase} ${searchOpen ? 'text-kumo-brand' : 'text-kumo-subtle hover:text-kumo-default'}`}
             >
-              {t.search}
-            </Link>
+              <Search size={15} strokeWidth={1.5} />
+              <NavLabel active={false}>{t.search}</NavLabel>
+            </button>
             <Link
               to={`/${lang}/about`}
-              className="text-kumo-subtle hover:text-kumo-default transition-colors duration-200"
+              title={t.about}
+              className={`${linkBase} ${onAbout ? 'text-kumo-strong' : 'text-kumo-subtle hover:text-kumo-default'}`}
             >
-              {t.about}
+              <Info size={15} strokeWidth={1.5} />
+              <NavLabel active={onAbout}>{t.about}</NavLabel>
             </Link>
             <span className="w-px h-3 bg-kumo-hairline" />
             <Link
               to={switchPath}
-              className="text-kumo-subtle hover:text-kumo-brand transition-colors duration-200"
+              className="text-kumo-subtle hover:text-kumo-brand transition-colors duration-200 font-mono text-[10px] sm:text-[11px] tracking-[0.16em]"
             >
               {otherLang.toUpperCase()}
             </Link>
@@ -79,6 +109,8 @@ export default function Layout() {
           <span>{isEn ? 'INTERFACE & TASTE' : '界面 · 品位'}</span>
         </div>
       </footer>
+
+      <SearchModal open={searchOpen} onClose={() => setSearchOpen(false)} lang={lang} en={isEn} />
     </div>
   )
 }
